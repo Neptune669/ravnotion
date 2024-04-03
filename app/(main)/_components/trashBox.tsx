@@ -1,5 +1,6 @@
 "use client";
 
+import { ConfirmModal } from "@/components/modals/confirm-modal";
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/sppiner";
 import {
@@ -105,9 +106,11 @@ export const TrashBox = () => {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
-                    <div onClick={() => onRemove(doc._id)} className="">
-                      <Trash className="size-4 text-destructive " />
-                    </div>
+                    <ConfirmModal onConfirm={() => onRemove(doc._id)}>
+                      <div className="">
+                        <Trash className="size-4 text-destructive " />
+                      </div>
+                    </ConfirmModal>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>Delete</p>
