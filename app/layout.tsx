@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
+import { Toaster } from "sonner";
 
 const font = Montserrat({ subsets: ["latin"] });
 
@@ -42,6 +43,7 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey="ravnotion-theme"
           >
+            <Toaster richColors position="top-center" />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>

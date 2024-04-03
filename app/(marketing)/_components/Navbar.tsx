@@ -26,7 +26,7 @@ const Navbar = () => {
         {isLoading && <Spinner />}
         {!isAuthenticated && !isLoading && (
           <>
-            <SignInButton mode="modal">
+            <SignInButton afterSignInUrl="/documents" mode="modal">
               <Button variant="ghost" size={"sm"}>
                 Sign In
               </Button>
