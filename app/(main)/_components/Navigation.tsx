@@ -1,6 +1,15 @@
 "use client";
 
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { api } from "@/convex/_generated/api";
+import { useSearch } from "@/hooks/use-search";
+import { useSettings } from "@/hooks/use-settings";
 import { cn } from "@/lib/utils";
+import { useMutation, useQuery } from "convex/react";
 import {
   ChevronsLeft,
   MenuIcon,
@@ -10,25 +19,21 @@ import {
   Settings,
   Trash,
 } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import React, { ElementRef, useEffect, useRef, useState } from "react";
-import { useMediaQuery } from "usehooks-ts";
-import UserItem from "./user-item";
-import { useMutation, useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
-import { Item } from "./item";
 import { toast } from "sonner";
+import { useMediaQuery } from "usehooks-ts";
 import { DocumentsList } from "./documentsList";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Item } from "./item";
 import { TrashBox } from "./trashBox";
+import UserItem from "./user-item";
+import { Navbar } from "./Navbar";
 
 export const Navigation = () => {
+  const settings = useSettings();
+  const search = useSearch();
   const create = useMutation(api.documents.create);
-  const trash = useQuery(api.documents.getTrash);
+  const params = useParams();
 
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -139,8 +144,8 @@ export const Navigation = () => {
         </div>
         <div className="">
           <UserItem />
-          <Item onClick={() => {}} label="Search" icon={Search} isSearch />
-          <Item onClick={() => {}} label="Settings" icon={Settings} />
+          <Item onClick={search.onOpen} label="Search" icon={Search} isSearch />
+          <Item onClick={settings.onOpen} label="Settings" icon={Settings} />
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
         <div className="mt-4">
@@ -172,14 +177,18 @@ export const Navigation = () => {
           isMobile && "left-0 w-full"
         )}
       >
-        <nav className="bg-transparent px-3 py-2 w-full">
-          {isCollapsed && (
-            <MenuIcon
-              onClick={resetWidth}
-              className="text-muted-foreground cursor-pointer size-6"
-            />
-          )}
-        </nav>
+        {!!params.documentId ? (
+          <Navbar isCollapsed={isCollapsed} onResetWidth={resetWidth} />
+        ) : (
+          <nav className="bg-transparent px-3 py-2 w-full">
+            {isCollapsed && (
+              <MenuIcon
+                onClick={resetWidth}
+                className="text-muted-foreground cursor-pointer size-6"
+              />
+            )}
+          </nav>
+        )}
       </div>
     </>
   );

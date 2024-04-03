@@ -93,7 +93,8 @@ export const TrashBox = () => {
                   <TooltipTrigger>
                     <div
                       onClick={(event) => onRestore(event, doc._id)}
-                      className=""
+                      role="button"
+                      className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                     >
                       <Undo className="size-4 text-primary mr-2" />
                     </div>
@@ -107,7 +108,10 @@ export const TrashBox = () => {
                 <Tooltip>
                   <TooltipTrigger>
                     <ConfirmModal onConfirm={() => onRemove(doc._id)}>
-                      <div className="">
+                      <div
+                        role="button"
+                        className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                      >
                         <Trash className="size-4 text-destructive " />
                       </div>
                     </ConfirmModal>

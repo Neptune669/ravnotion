@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
+import { ModelProvider } from "@/components/providers/model-provider";
 import { Toaster } from "sonner";
 
 const font = Montserrat({ subsets: ["latin"] });
@@ -34,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body>
+      <body className={font.className}>
         <ConvexClientProvider>
           <ThemeProvider
             attribute="class"
@@ -43,7 +44,8 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey="ravnotion-theme"
           >
-            <Toaster richColors position="top-center" />
+            <Toaster position="bottom-center" />
+            <ModelProvider />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>

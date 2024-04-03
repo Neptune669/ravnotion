@@ -31,6 +31,7 @@ interface ItemProps {
   id?: Id<"documents">;
   documentIcon?: string;
   active?: boolean;
+  isSettings?: boolean;
   expanded?: boolean;
   isSearch?: boolean;
   level?: number;
@@ -44,7 +45,6 @@ export const Item = ({
   documentIcon,
   active,
   expanded,
-
   isSearch,
   level = 0,
   onExpand,
@@ -106,7 +106,7 @@ export const Item = ({
       {!!id && (
         <div
           role="button"
-          className="h-full rounded-sm hover:bg-neutral-300 dark:bg-neutral-600 mr-1"
+          className="h-full rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 mr-1"
           onClick={handleExpand}
         >
           <ChevronIcon className="size-4 shrink-0 text-muted-foreground/50 " />
