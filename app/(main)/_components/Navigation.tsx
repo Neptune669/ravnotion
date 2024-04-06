@@ -25,11 +25,12 @@ import {
 import { useSearch } from "@/hooks/use-search";
 import { useSettings } from "@/hooks/use-settings";
 
+import { UserItem } from "./user-item";
 import { Item } from "./item";
-import { DocumentsList } from "./documentsList";
 import { TrashBox } from "./trashBox";
+import { DocumentsList } from "./documentsList";
 import { Navbar } from "./Navbar";
-import UserItem from "./user-item";
+
 export const Navigation = () => {
   const router = useRouter();
   const settings = useSettings();
