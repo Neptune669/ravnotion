@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
 import { ModelProvider } from "@/components/providers/model-provider";
 import { Toaster } from "sonner";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const font = Montserrat({ subsets: ["latin"] });
 
@@ -37,17 +38,19 @@ export default function RootLayout({
       <head />
       <body className={font.className}>
         <ConvexClientProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-            storageKey="ravnotion-theme"
-          >
-            <Toaster position="bottom-center" />
-            <ModelProvider />
-            {children}
-          </ThemeProvider>
+          <EdgeStoreProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+              storageKey="ravnotion-theme"
+            >
+              <Toaster position="bottom-center" />
+              <ModelProvider />
+              {children}
+            </ThemeProvider>
+          </EdgeStoreProvider>
         </ConvexClientProvider>
       </body>
     </html>

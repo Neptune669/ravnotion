@@ -41,11 +41,11 @@ export const DocumentsList = ({
   if (documents === undefined) {
     return (
       <>
-        <Item.skeleton level={level} />
+        <Item.Skeleton level={level} />
         {level === 0 && (
           <>
-            <Item.skeleton level={level} />
-            <Item.skeleton level={level} />
+            <Item.Skeleton level={level} />
+            <Item.Skeleton level={level} />
           </>
         )}
       </>

@@ -50,7 +50,7 @@ export const Title = ({ initialData }: TitleProps) => {
           onBlur={disableInput}
           onChange={onchange}
           onKeyDown={onKeydown}
-          className="h-7 px-2 focus-visible:ring-transparent"
+          className="h-7 font-semibold px-2 focus-visible:ring-transparent"
         />
       ) : (
         <Button
@@ -59,7 +59,7 @@ export const Title = ({ initialData }: TitleProps) => {
           className="font-normal h-auto p-1"
           onClick={enableInput}
         >
-          <span className="truncate">{initialData.title}</span>
+          <span className="truncate font-semibold">{initialData.title}</span>
         </Button>
       )}
     </div>
