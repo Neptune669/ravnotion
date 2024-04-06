@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "convex/react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { MenuIcon } from "lucide-react";
 
 import { api } from "@/convex/_generated/api";
@@ -15,11 +15,13 @@ import { Publish } from "./publish";
 interface NavbarProps {
   isCollapsed: boolean;
   onResetWidth: () => void;
-}
+};
 
-export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
+export const Navbar = ({
+  isCollapsed,
+  onResetWidth
+}: NavbarProps) => {
   const params = useParams();
-  const router = useRouter();
 
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId as Id<"documents">,
@@ -33,16 +35,13 @@ export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
           <Menu.Skeleton />
         </div>
       </nav>
-    );
+    )
   }
 
   if (document === null) {
     return null;
   }
 
-  if (!document._id) {
-    router.push("/documents");
-  }
   return (
     <>
       <nav className="bg-background dark:bg-[#1F1F1F] px-3 py-2 w-full flex items-center gap-x-4">
@@ -61,7 +60,9 @@ export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
           </div>
         </div>
       </nav>
-      {document.isArchived && <Banner documentId={document._id} />}
+      {document.isArchived && (
+        <Banner documentId={document._id} />
+      )}
     </>
-  );
-};
+  )
+}

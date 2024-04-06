@@ -1,7 +1,12 @@
 "use client";
-import { ChevronsLeftRight } from "lucide-react";
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
+import { ChevronsLeftRight } from "lucide-react";
+import { useUser, SignOutButton } from "@clerk/clerk-react";
+
+import {
+  Avatar,
+  AvatarImage
+} from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,26 +15,23 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { SignOutButton, useUser } from "@clerk/clerk-react";
-import { Button } from "@/components/ui/button";
+
 export const UserItem = () => {
   const { user } = useUser();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div
-          role="button"
-          className="flex items-center text-sm p-3 w-full hover:bg-primary/5 rounded-md"
-        >
+        <div role="button" className="flex items-center text-sm p-3 w-full hover:bg-primary/5">
           <div className="gap-x-2 flex items-center max-w-[150px]">
-            <Avatar className="size-4 ">
+            <Avatar className="h-5 w-5">
               <AvatarImage src={user?.imageUrl} />
             </Avatar>
             <span className="text-start font-medium line-clamp-1">
-              {user?.fullName}&apos;s Ravnotion
+              {user?.fullName}&apos;s Jotion
             </span>
           </div>
-          <ChevronsLeftRight className="rotate-90 text-muted-foreground ml-2 size-4" />
+          <ChevronsLeftRight className="rotate-90 ml-2 text-muted-foreground h-4 w-4" />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent
@@ -43,26 +45,25 @@ export const UserItem = () => {
             {user?.emailAddresses[0].emailAddress}
           </p>
           <div className="flex items-center gap-x-2">
-            <div className="rounded-md bg-secondary p-1 ">
-              <Avatar className="size-8">
+            <div className="rounded-md bg-secondary p-1"> 
+              <Avatar className="h-8 w-8">
                 <AvatarImage src={user?.imageUrl} />
               </Avatar>
             </div>
-            <div className="skew-y-1">
+            <div className="space-y-1">
               <p className="text-sm line-clamp-1">
-                {user?.fullName}&apos;s Ravnotion
+                {user?.fullName}&apos;s Jotion
               </p>
             </div>
           </div>
         </div>
         <DropdownMenuSeparator />
-        <DropdownMenuItem
-          asChild
-          className="w-full cursor-pointer text-muted-foreground"
-        >
-          <SignOutButton>Sign Out</SignOutButton>
+        <DropdownMenuItem asChild className="w-full cursor-pointer text-muted-foreground">
+          <SignOutButton>
+            Log out
+          </SignOutButton>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
+  )
+}
