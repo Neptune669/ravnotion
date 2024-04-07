@@ -11,7 +11,7 @@ import { SignInButton, UserButton } from "@clerk/clerk-react";
 import { Spinner } from "@/components/sppiner";
 import Link from "next/link";
 
-const Navbar = () => {
+export const Navbar = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
   const scrolled = useScrollTop();
   return (
@@ -49,5 +49,3 @@ const Navbar = () => {
     </div>
   );
 };
-
-export default Navbar;
