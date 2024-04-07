@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
-import { ModelProvider } from "@/components/providers/model-provider";
 import { Toaster } from "sonner";
 import { EdgeStoreProvider } from "@/lib/edgestore";
+import { ModalProvider } from "@/components/providers/modal-provider";
 
 // const font = Montserrat({ subsets: ["latin"] });
 
@@ -47,7 +47,7 @@ export default function RootLayout({
               storageKey="ravnotion-theme"
             >
               <Toaster position="bottom-center" />
-              <ModelProvider />
+              <ModalProvider />
               {children}
             </ThemeProvider>
           </EdgeStoreProvider>
