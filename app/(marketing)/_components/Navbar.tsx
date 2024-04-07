@@ -8,7 +8,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { useConvexAuth } from "convex/react";
 import { Loader2 } from "lucide-react";
 import { SignInButton, UserButton } from "@clerk/clerk-react";
-import { Spinner } from "@/components/ui/sppiner";
+import { Spinner } from "@/components/sppiner";
 import Link from "next/link";
 
 const Navbar = () => {

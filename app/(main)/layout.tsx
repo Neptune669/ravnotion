@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 import { SearchCommand } from "@/components/search-command";
 
-import { Spinner } from "@/components/ui/sppiner";
+import { Spinner } from "@/components/sppiner";
 import { Navigation } from "./_components/navigation";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
